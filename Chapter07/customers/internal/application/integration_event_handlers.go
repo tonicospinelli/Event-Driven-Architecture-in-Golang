@@ -47,7 +47,7 @@ func (h IntegrationEventHandlers[T]) onCustomerRegistered(ctx context.Context, e
 }
 
 func (h IntegrationEventHandlers[T]) onCustomerSmsChanged(ctx context.Context, event ddd.AggregateEvent) error {
-	payload := event.Payload().(*domain.CustomerRegistered)
+	payload := event.Payload().(*domain.CustomerSmsChanged)
 	return h.publisher.Publish(ctx, customerspb.CustomerAggregateChannel,
 		ddd.NewEvent(customerspb.CustomerSmsChangedEvent, &customerspb.CustomerSmsChanged{
 			Id:        payload.Customer.ID(),
