@@ -40,6 +40,7 @@ func (h IntegrationEventHandlers[T]) onOrderCreated(ctx context.Context, event d
 	items := make([]*orderingpb.OrderCreated_Item, len(payload.Items))
 	for i, item := range payload.Items {
 		items[i] = &orderingpb.OrderCreated_Item{
+			StoreId:   item.StoreID,
 			ProductId: item.ProductID,
 			Price:     item.Price,
 			Quantity:  int32(item.Quantity),
