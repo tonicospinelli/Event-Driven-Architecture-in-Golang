@@ -68,7 +68,7 @@ func (r ProductCacheRepository) Find(ctx context.Context, productID string) (*mo
 		ID: productID,
 	}
 
-	err := r.db.QueryRowContext(ctx, r.table(query), productID).Scan(&product.Name)
+	err := r.db.QueryRowContext(ctx, r.table(query), productID).Scan(&product.StoreID, &product.Name, &product.Price)
 	if err != nil {
 		if !errors.Is(err, sql.ErrNoRows) {
 			return nil, errors.Wrap(err, "scanning product")
